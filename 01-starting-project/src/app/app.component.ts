@@ -10,23 +10,22 @@ import { InvestmentResultsComponent } from "./investment-results/investment-resu
   templateUrl: './app.component.html',
   imports: [HeaderComponent, UserInputComponent, InvestmentResultsComponent],
 })
-export class AppComponent 
-{
-resultsData?:
-{
-  year: number,
-  interest: number,
-  valueEndOfYear: number,
-  annualInvestment: number,
-  totalInterest: number,
-  totalAmountInvested: number,
-}[];
+export class AppComponent {
+  resultsData?:
+    {
+      year: number,
+      interest: number,
+      valueEndOfYear: number,
+      annualInvestment: number,
+      totalInterest: number,
+      totalAmountInvested: number,
+    }[];
 
   onCalculateInvestmentResults(data: InvestmentInput) {
-    const{initialInvestment, expectedReturn, duration, annualInvestment} = data;
+    const { initialInvestment, expectedReturn, duration, annualInvestment } = data;
     const annualData = [];
     let investmentValue = initialInvestment;
-  
+
     for (let i = 0; i < duration; i++) {
       const year = i + 1;
       const interestEarnedInYear = investmentValue * (expectedReturn / 100);
@@ -42,7 +41,7 @@ resultsData?:
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-  
+
     this.resultsData = annualData;
   }
 }
